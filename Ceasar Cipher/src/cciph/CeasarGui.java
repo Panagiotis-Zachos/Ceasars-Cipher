@@ -39,7 +39,6 @@ public class CeasarGui {
 		frmCeasarsCipher.setForeground(Color.DARK_GRAY);
 		frmCeasarsCipher.getContentPane().setForeground(Color.WHITE);
 		frmCeasarsCipher.setBounds(100, 100, 756, 451);
-		frmCeasarsCipher.setVisible(true);
 		frmCeasarsCipher.getContentPane().setLayout(null);
 		
 		txtKey = new JTextField();
@@ -71,7 +70,7 @@ public class CeasarGui {
 			public void actionPerformed(ActionEvent e) {
 				String txt = txtPnDe.getText().toLowerCase();
 				try {
-					int key = Integer.parseInt(txtKey.getText());
+					int key = Integer.parseInt(txtKey.getText()) % 26;
 					txtPnEn.setText(cip.cipher(txt, key));
 				}catch(NumberFormatException e1) {
 				    JOptionPane.showMessageDialog(null, "You need to enter a valid integer key value to encrypt.", "Error",
@@ -88,7 +87,7 @@ public class CeasarGui {
 			public void actionPerformed(ActionEvent e) {
 				String txt = txtPnEn.getText();
 				try {
-					int key = Integer.parseInt(txtKey.getText().toLowerCase());
+					int key = Integer.parseInt(txtKey.getText().toLowerCase()) % 26;
 					txtPnDe.setText(cip.decipher(txt, key));
 				} catch (NumberFormatException e1) {
 					txtPnDe.setText(cip.freqDecipher(txt));
@@ -97,5 +96,6 @@ public class CeasarGui {
 		});
 		btnNewButton_2.setBounds(330, 231, 89, 23);
 		frmCeasarsCipher.getContentPane().add(btnNewButton_2);
+		frmCeasarsCipher.setVisible(true);
 	}
 }
